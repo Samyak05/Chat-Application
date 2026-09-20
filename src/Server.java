@@ -34,18 +34,20 @@ public class Server {
         // thread1 - data read krke deta rahega
         Runnable r1=()->{
             System.out.println("reader started.");
-            while(true){
-                try {
+            try {
+
+                while (true) {
                     String msg = br.readLine();
                     if (msg.equals("exit")) {
-                        System.out.println("Client terminated the chat");
+                        System.out.print("Client terminated the chat");
+                        socket.close();
                         break;
                     }
                     System.out.println("Client: " + msg);
 
-                }catch (Exception e){
-                    e.printStackTrace();
                 }
+            }catch (Exception e){
+                e.printStackTrace();
             }
         };
 
@@ -57,8 +59,8 @@ public class Server {
         // thread2 - data user lega and send karega client tak
         Runnable r2=()->{
             System.out.println("writer started.");
-            while (true){
-                try {
+            try {
+                while (true) {
                     // read the content from console, that data which is sent by client
                     BufferedReader br1 = new BufferedReader(new InputStreamReader(System.in));
                     String content = br1.readLine(); // store in 'content' variable
@@ -66,9 +68,15 @@ public class Server {
                     out.println(content); //send that data to client
                     out.flush();
 
-                }catch (Exception e){
-                    e.printStackTrace();
+                    if(content.equals("exit")){
+                        socket.close();
+                        break;
+                    }
+
                 }
+            }
+            catch (Exception e){
+                e.printStackTrace();
             }
 
         };
