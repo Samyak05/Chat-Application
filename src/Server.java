@@ -36,7 +36,7 @@ public class Server {
             System.out.println("reader started.");
             try {
 
-                while (true) {
+                while (!socket.isClosed()) {
                     String msg = br.readLine();
                     if (msg.equals("exit")) {
                         System.out.print("Client terminated the chat");

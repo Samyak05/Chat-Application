@@ -32,8 +32,8 @@ public class Client {
         Runnable r1 = ()->{
             System.out.println("Reader started.");
 
-            try {`
-                while (true) {
+            try {
+                while (!socket.isClosed()) {
 
                     String msg = br.readLine();
                     if (msg.equals("exit")) {
