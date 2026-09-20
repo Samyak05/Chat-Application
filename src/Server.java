@@ -47,7 +47,8 @@ public class Server {
 
                 }
             }catch (Exception e){
-                e.printStackTrace();
+//                e.printStackTrace();
+                System.out.println("Connection is closed");
             }
         };
 
@@ -60,7 +61,7 @@ public class Server {
         Runnable r2=()->{
             System.out.println("writer started.");
             try {
-                while (true) {
+                while(true){
                     // read the content from console, that data which is sent by client
                     BufferedReader br1 = new BufferedReader(new InputStreamReader(System.in));
                     String content = br1.readLine(); // store in 'content' variable
@@ -74,9 +75,11 @@ public class Server {
                     }
 
                 }
+
             }
             catch (Exception e){
-                e.printStackTrace();
+//                e.printStackTrace();
+                System.out.println("Connection is closed");
             }
 
         };

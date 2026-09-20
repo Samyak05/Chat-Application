@@ -44,7 +44,8 @@ public class Client {
                     System.out.println("Server: " + msg);
                 }
             } catch (Exception e) {
-                e.printStackTrace();
+//                e.printStackTrace();
+                System.out.println("Connection is closed");
             }
         };
         new Thread(r1).start();
@@ -55,7 +56,7 @@ public class Client {
             System.out.println("writer started");
 
             try {
-                while (true) {
+                while (!socket.isClosed()) {
                     BufferedReader br2 = new BufferedReader(new InputStreamReader(System.in));
                     String content = br2.readLine();
                     out.println(content);
